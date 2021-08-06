@@ -1,3 +1,50 @@
+<?php
+require_once 'classes/Calculator.php';
+require_once 'classes/OperatorInterface.php';
+require_once 'classes/Adder.php';
+require_once 'classes/Subtractor.php';
+require_once 'classes/Multiplier.php';
+require_once 'classes/Divider.php';
+
+$num1 = $_POST['num1'];
+$num2 = $_POST['num2'];
+$operator = $_POST['operator'];
+
+$c = new Calculator();
+
+switch ($operator) {
+    case "+":
+        $c->setOperation(new Adder);
+        $c->calculate($num1, $num2);
+        break;
+    case "-":
+        $c->setOperation(new Subtractor);
+        $c->calculate($num1, $num2);
+        break;
+    case "*":
+        $c->setOperation(new Multiplier);
+        $c->calculate($num1, $num2);
+        break;
+    case "/":
+        $c->setOperation(new Divider);
+        $c->calculate($num1, $num2);
+        break;
+    default:
+        echo "asdfsad";
+}
+echo $c->getResult();
+
+
+
+
+
+
+
+
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,23 +52,18 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
-    <title>Calculator</title>
+    <title>Document</title>
 </head>
 
 <body>
 
-    <form action="calculator.php" method="POST">
-        <label for="number">Digite o nome do number</label>
-        <input type="number" name="number" id="number">
-        <input type="text" name="operator" id="operator">
-        <input type="submit" value="Enviar">
+    <form method="POST" action="index.php">
+        <input type="number" name="num1">
+        <input type="number" name="num2">
+        <input type="text" name="operator">
+        <input type="submit" name="submit" value="submit">
     </form>
 
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
-    <script src="main.js"></script>
 </body>
 
 </html>
