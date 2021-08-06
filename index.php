@@ -30,7 +30,7 @@ switch ($operator) {
         $c->calculate($num1, $num2);
         break;
     default:
-        echo "asdfsad";
+        echo "asdfsahksdahyfuisdaufsaduifhd";
 }
 echo $c->getResult();
 
