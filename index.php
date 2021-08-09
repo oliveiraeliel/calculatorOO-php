@@ -1,43 +1,35 @@
 <?php
 require_once 'classes/Calculator.php';
-require_once 'classes/OperatorInterface.php';
-require_once 'classes/Adder.php';
-require_once 'classes/Subtractor.php';
-require_once 'classes/Multiplier.php';
-require_once 'classes/Divider.php';
 
 $num1 = $_POST['num1'];
 $num2 = $_POST['num2'];
 $operator = $_POST['operator'];
 
-$c = new Calculator();
+$c = new Calculadora();
 
 switch ($operator) {
     case "+":
-        $c->setOperation(new Adder);
-        $c->calculate($num1, $num2);
+        $c->Somar($num1, $num2);
         break;
     case "-":
-        $c->setOperation(new Subtractor);
-        $c->calculate($num1, $num2);
+        $c->Subtrair($num1, $num2);
         break;
     case "*":
-        $c->setOperation(new Multiplier);
-        $c->calculate($num1, $num2);
+        $c->Multiplicar($num1, $num2);
         break;
     case "/":
-        $c->setOperation(new Divider);
-        $c->calculate($num1, $num2);
+        $c->Dividir($num1, $num2);
+        break;
+    case "%";
+        $c->CalcularPorcentagem($num1, $num2);
+        break;
+    case "^";
+        $c->CalcularPotencia($num1, $num2);
         break;
     default:
-        echo "asdfsahksdahyfuisdaufsaduifhd";
+        echo "A";
 }
-echo $c->getResult();
-
-
-
-
-
+$c->showResults();
 
 
 
@@ -58,9 +50,17 @@ echo $c->getResult();
 <body>
 
     <form method="POST" action="index.php">
-        <input type="number" name="num1">
-        <input type="number" name="num2">
-        <input type="text" name="operator">
+        <input type="text" name="num1">
+        <select name="operator" id="operator">
+        <option value=""></option>
+            <option value="*">*</option>
+            <option value="+">+</option>
+            <option value="-">-</option>
+            <option value="/">/</option>
+            <option value="^">Elevado à</option>
+            <option value="%">Porcento de</option>
+        </select>
+        <input type="text" name="num2">
         <input type="submit" name="submit" value="submit">
     </form>
 
