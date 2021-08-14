@@ -1,35 +1,43 @@
 <?php
 require_once 'classes/Calculator.php';
 
-$num1 = $_POST['num1'];
-$num2 = $_POST['num2'];
-$operator = $_POST['operator'];
+if (isset($_POST["submit"])) {
+    $num1 = $_POST['num1'];
+    $num2 = $_POST['num2'];
+    $operator = $_POST['operator'];
 
-$c = new Calculadora();
+    $c = new Calculadora();
 
-switch ($operator) {
-    case "+":
-        $c->Somar($num1, $num2);
-        break;
-    case "-":
-        $c->Subtrair($num1, $num2);
-        break;
-    case "*":
-        $c->Multiplicar($num1, $num2);
-        break;
-    case "/":
-        $c->Dividir($num1, $num2);
-        break;
-    case "%";
-        $c->CalcularPorcentagem($num1, $num2);
-        break;
-    case "^";
-        $c->CalcularPotencia($num1, $num2);
-        break;
-    default:
-        echo "A";
+    switch ($operator) {
+        case "+":
+            $c->Somar($num1, $num2);
+            $c->GetResultado();
+            break;
+        case "-":
+            $c->Subtrair($num1, $num2);
+            $c->GetResultado();
+            break;
+        case "*":
+            $c->Multiplicar($num1, $num2);
+            $c->GetResultado();
+            break;
+        case "/":
+            $c->Dividir($num1, $num2);
+            $c->GetResultado();
+            break;
+        case "%";
+            $c->CalcularPorcentagem($num1, $num2);
+            $c->GetResultado();
+            break;
+        case "^";
+            $c->CalcularPotencia($num1, $num2);
+            $c->GetResultado();
+            break;
+        default:
+            break;
+    }
 }
-$c->showResults();
+
 
 
 
@@ -52,7 +60,7 @@ $c->showResults();
     <form method="POST" action="index.php">
         <input type="text" name="num1">
         <select name="operator" id="operator">
-        <option value=""></option>
+            <option value=""></option>
             <option value="*">*</option>
             <option value="+">+</option>
             <option value="-">-</option>
